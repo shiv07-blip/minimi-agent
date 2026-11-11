@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minimi — memory-aware research chat</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">
+          <span class="brand-mark">◆</span>
+          <span class="brand-name">minimi</span>
+        </div>
+        <button id="themeBtn" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      </div>
+      <button id="newChatBtn" class="new-chat">＋ New chat</button>
+      <nav id="conversationList" aria-label="Conversations"></nav>
+      <div class="sidebar-foot">
+        <button id="memoryBtn" class="foot-btn">🧠 Memory</button>
+        <span class="foot-note">durable · local · inspectable</span>
+      </div>
+    </aside>
+
+    <main id="main">
+      <div id="banner" class="banner hidden"></div>
+      <header id="chatHeader">
+        <h1 id="chatTitle">New chat</h1>
+        <span id="providerBadge" class="provider-badge" title=""></span>
+      </header>
+
+      <div id="messages" aria-live="polite">
+        <div id="welcome" class="welcome">
+          <div class="welcome-card">
+            <div class="welcome-title"><span class="brand-mark big">◆</span> Hi, I'm Minimi.</div>
+            <p class="welcome-sub">
+              A research assistant with <strong>durable memory</strong> and <strong>live web search</strong>.
+              Ask me anything — then come back tomorrow and ask what changed since.
+            </p>
+            <div class="examples">
+              <button class="example" data-text="Shortlist 5 CRM tools for a 20-person sales team, with current pricing for each.">
+                <span class="ex-label">Try</span> Shortlist 5 CRM tools for a 20-person sales team, with current pricing
+              </button>
+              <button class="example" data-text="Compare today's pricing for Supabase, Neon and Railway Postgres hosting for a small side project.">
+                <span class="ex-label">Try</span> Compare Postgres hosting pricing (Supabase vs Neon vs Railway)
+              </button>
+              <button class="example" data-text="What have we talked about so far, and on which dates?">
+                <span class="ex-label">Recall</span> What have we talked about so far, and when?
+              </button>
+              <button class="example" data-text="What did I ask you last Tuesday? Is any of it out of date now?">
+                <span class="ex-label">Recall</span> What did I ask you last Tuesday? Is it still correct?
+              </button>
+            </div>
+            <p class="welcome-hint">
+              Every answer is distilled into memory, so later you can ask
+              <em>"has any of that changed since?"</em> — and I'll re-check the live web against what I told you.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="composer">
+        <div class="composer-inner">
+          <textarea id="input" rows="1" placeholder="Ask anything… (Enter to send, Shift+Enter for a new line)" autofocus></textarea>
+          <button id="sendBtn" class="send-btn" title="Send" aria-label="Send">↑</button>
+          <button id="stopBtn" class="stop-btn hidden" title="Stop" aria-label="Stop">■</button>
+        </div>
+        <div class="composer-hint">Minimi searches the live web and remembers past conversations. Verify anything critical.</div>
+      </div>
+    </main>
+
+    <aside id="memoryDrawer" class="hidden" aria-label="Memory inspector">
+      <div class="drawer-head">
+        <h2>🧠 Memory</h2>
+        <button id="memoryClose" class="icon-btn" title="Close" aria-label="Close">✕</button>
+      </div>
+      <p class="drawer-sub">Every turn is distilled into structured memory: topic, entities, claims and sources. This is exactly what the agent retrieves when you reference the past.</p>
+      <div class="drawer-search">
+        <input id="memoryQuery" type="text" placeholder="Test retrieval, e.g. what did I ask on 3 November" />
+        <button id="memorySearchBtn">Search</button>
+      </div>
+      <div id="memoryList" class="memory-list"></div>
+    </aside>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
